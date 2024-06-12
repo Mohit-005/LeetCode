@@ -1,4 +1,4 @@
-Explanation of the [75. Sort Colors] (https://leetcode.com/problems/sort-colors/description/) Solution
+# Explanation of the [75. Sort Colors](https://leetcode.com/problems/sort-colors/description/) Solution
 
 # Intuition
 The problem of sorting an array of 0s, 1s, and 2s is effectively solved by the [Dutch National Flag algorithm](https://www.geeksforgeeks.org/sort-an-array-of-0s-1s-and-2s/). The idea is to use three pointers to categorize the elements into three sections: red (0s), white (1s), and blue (2s). By moving these pointers and swapping elements, we can ensure the array is sorted in a single pass.
