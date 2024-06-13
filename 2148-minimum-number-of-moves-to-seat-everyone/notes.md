@@ -1,4 +1,4 @@
-Explanation of [2037. Minimum Number of Moves to Seat Everyone](https://leetcode.com/problems/minimum-number-of-moves-to-seat-everyone/description/?envType=daily-question&envId=2024-06-13) solution.
+# Explanation of [2037. Minimum Number of Moves to Seat Everyone](https://leetcode.com/problems/minimum-number-of-moves-to-seat-everyone/description/?envType=daily-question&envId=2024-06-13) solution.
 
 # Intuition:
 The core idea of the solution is to use a frequency array to track the imbalance between the number of students and the number of seats at each position. By iterating through this frequency array, we can determine the minimum number of moves required to balance this imbalance, effectively assigning each student to a seat.
