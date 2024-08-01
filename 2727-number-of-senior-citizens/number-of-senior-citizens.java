@@ -1,15 +1,23 @@
 class Solution {
+
     public int countSeniors(String[] details) {
-        int sum=0;
-        int inc=0;
-        for(int i=0;i<details.length;i++){
-            sum=sum*10+details[i].charAt(11)-48;
-            sum=sum*10+details[i].charAt(12)-48;
-            if(sum>60){
-                inc++;
+        int seniorCount = 0;
+
+        // Iterate through each passenger's details
+        for (String passengerInfo : details) {
+            // Extract the digits of age
+            int ageTens = passengerInfo.charAt(11) - '0';
+            int ageOnes = passengerInfo.charAt(12) - '0';
+
+            // Calculate the full age
+            int age = ageTens * 10 + ageOnes;
+
+            // Check if the passenger is a senior (strictly over 60 years old)
+            if (age > 60) {
+                seniorCount++;
             }
-            sum=0;
         }
-        return inc;
+
+        return seniorCount;
     }
 }
