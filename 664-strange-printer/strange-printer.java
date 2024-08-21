@@ -1,22 +1,33 @@
 class Solution {
     public int strangePrinter(String s) {
-        int n = s.length();
-        int[][] dp = new int[n][n];
-        for(int i = 0 ; i < n ; i++) 
-            Arrays.fill(dp[i] , -1);
-        return solve(0 , n-1 , dp , s);
-        
+        char[] sc = s.toCharArray();
+        final int n = removeDuplicates(sc);
+        if (n <= 1)  return n;
+        return dfs(0, n - 1, sc, new int[n][n]);
     }
-
-    private int solve(int i,int j,int[][] dp,String s){
-     if(i == j) 
-        return 1;
-     if(dp[i][j] != -1) 
-        return dp[i][j];
-     int ans = Integer.MAX_VALUE;
-     for(int k = i ; k < j ; k++){
-        ans = Math.min(ans , solve(i,k,dp,s) + solve(k+1,j,dp,s));
+    
+    
+    private int dfs(int left, int right, char[] sc, int[][] memo) {
+        if (left >= right)  return (left == right) ? 1 : 0;
+        if (memo[left][right] != 0)  return memo[left][right];
+        int letter = sc[left];
+        int answer = 1 + dfs(left + 1, right, sc, memo);
+        for (int k = left + 1; k <= right; k++) 
+            if (sc[k] == letter) 
+                answer = Math.min(answer, dfs(left+1, k - 1, sc, memo) + dfs(k, right, sc, memo));
+        return memo[left][right] = answer;
     }
-     return dp[i][j] = s.charAt(i) == s.charAt(j)?ans-1:ans;
+    
+    
+    private int removeDuplicates(char[] sc) {
+        int scOutIdx = 0;
+        char prev = 0;
+        for (char c : sc) {
+            if (c != prev) {
+                sc[scOutIdx++] = c;
+                prev = c;
+            }
+        }
+        return scOutIdx;
     }
 }
