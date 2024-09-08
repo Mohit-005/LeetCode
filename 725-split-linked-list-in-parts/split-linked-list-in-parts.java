@@ -10,43 +10,37 @@
  */
 class Solution {
     public ListNode[] splitListToParts(ListNode head, int k) {
-           int length = 0;
-        ListNode current = head;
-        List<ListNode> parts = new ArrayList<>();
-
-        while (current != null) {
-            length++;
-            current = current.next;
+       
+        ListNode temp=head;
+        ListNode[] result=new ListNode[k];
+         if(head==null) return result;
+        int len=1;
+        while(temp.next!=null){
+            len++;
+            temp=temp.next;
         }
+        ListNode curr=head;
+        ListNode prev=null;
+        int i=0;
+        int remainingN=len%k;
+        while(curr!=null){
+            int eachBucket=len/k;
+          
 
-        int base_size = length / k, extra = length % k;
-        current = head;
-
-        for (int i = 0; i < k; i++) {
-            int part_size = base_size + (extra > 0 ? 1 : 0);
-            ListNode part_head = null, part_tail = null;
-
-            for (int j = 0; j < part_size; j++) {
-                if (part_head == null) {
-                    part_head = part_tail = current;
-                } else {
-                    part_tail.next = current;
-                    part_tail = part_tail.next;
-                }
-
-                if (current != null) {
-                    current = current.next;
-                }
+            result[i]=curr;
+            i++;
+            while(eachBucket!=0){
+                prev=curr;
+                curr=curr.next;
+                eachBucket--;
             }
-
-            if (part_tail != null) {
-                part_tail.next = null;
+            if(remainingN!=0){
+                prev=curr;
+                curr=curr.next;
+                remainingN--;
             }
-
-            parts.add(part_head);
-            extra = Math.max(extra - 1, 0);
+            prev.next=null;
         }
-
-        return parts.toArray(new ListNode[0]);
+       return result;
     }
 }
